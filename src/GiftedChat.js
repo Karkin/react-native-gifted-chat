@@ -450,7 +450,6 @@ class GiftedChat extends React.Component {
   }
 
   onChangeOverlay(e){
-    console.log(e);
     this.setState({overlayVisible: e});
   }
 
@@ -493,8 +492,7 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     left: 0,
-    opacity: 0.5,
-    backgroundColor: "#EEEEEE",
+    backgroundColor: "rgba(238,238,238,0.5)",
   },
   overlayIconBG: {
     alignItems:'center',
