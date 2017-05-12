@@ -13,7 +13,7 @@ module.exports = [
     text: 'React Native lets you build mobile apps using only JavaScript',
     createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
     user: {
-      _id: 1,
+      _id: -1,
       name: 'Developer',
     },
   },

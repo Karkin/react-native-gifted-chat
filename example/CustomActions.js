@@ -7,6 +7,7 @@ import {
   Text,
 } from 'react-native';
 
+import IconIonicons from 'react-native-vector-icons/Ionicons';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import NavBar, { NavButton, NavButtonText, NavTitle } from 'react-native-nav';
 
@@ -121,11 +122,7 @@ export default class CustomActions extends React.Component {
       <View
         style={[styles.wrapper, this.props.wrapperStyle]}
       >
-        <Text
-          style={[styles.iconText, this.props.iconTextStyle]}
-        >
-          +
-        </Text>
+        <IconIonicons name="ios-camera" size={28} color="#a7a8ac" />
       </View>
     );
   }
@@ -162,21 +159,11 @@ const styles = StyleSheet.create({
   container: {
     width: 26,
     height: 26,
-    marginLeft: 10,
+    marginLeft: 20,
     marginBottom: 10,
   },
   wrapper: {
-    borderRadius: 13,
-    borderColor: '#b2b2b2',
-    borderWidth: 2,
     flex: 1,
-  },
-  iconText: {
-    color: '#b2b2b2',
-    fontWeight: 'bold',
-    fontSize: 16,
-    backgroundColor: 'transparent',
-    textAlign: 'center',
   },
 });
 

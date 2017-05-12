@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 
-import {GiftedChat, Actions, Bubble} from 'react-native-gifted-chat';
+import {GiftedChat, Actions, Bubble, MessageText} from 'react-native-gifted-chat';
 import CustomActions from './CustomActions';
 import CustomView from './CustomView';
 
@@ -24,7 +24,6 @@ export default class Example extends React.Component {
     this.onSend = this.onSend.bind(this);
     this.onReceive = this.onReceive.bind(this);
     this.renderCustomActions = this.renderCustomActions.bind(this);
-    this.renderBubble = this.renderBubble.bind(this);
     this.renderFooter = this.renderFooter.bind(this);
     this.onLoadEarlier = this.onLoadEarlier.bind(this);
 
@@ -120,7 +119,7 @@ export default class Example extends React.Component {
           user: {
             _id: 2,
             name: 'React Native',
-            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+            //avatar: 'https://facebook.github.io/react/img/logo_og.png',
           },
         }),
       };
@@ -152,19 +151,6 @@ export default class Example extends React.Component {
     );
   }
 
-  renderBubble(props) {
-    return (
-      <Bubble
-        {...props}
-        wrapperStyle={{
-          left: {
-            backgroundColor: '#f0f0f0',
-          }
-        }}
-      />
-    );
-  }
-
   renderCustomView(props) {
     return (
       <CustomView
@@ -186,29 +172,44 @@ export default class Example extends React.Component {
     return null;
   }
 
+  setIsTypingDisabled(value) {
+    this.setState({
+      typingDisabled: value
+    });
+  }
+
+  getIsTypingDisabled() {
+    return this.state.typingDisabled;
+  }
+
   render() {
     return (
-      <GiftedChat
-        messages={this.state.messages}
-        onSend={this.onSend}
-        loadEarlier={this.state.loadEarlier}
-        onLoadEarlier={this.onLoadEarlier}
-        isLoadingEarlier={this.state.isLoadingEarlier}
+      <View style={styles.container}>
+        <GiftedChat
+          messages={this.state.messages}
+          onSend={this.onSend}
+          loadEarlier={this.state.loadEarlier}
+          onLoadEarlier={this.onLoadEarlier}
+          isLoadingEarlier={this.state.isLoadingEarlier}
 
-        user={{
-          _id: 1, // sent messages should have same user._id
-        }}
+          user={{
+            _id: 1, // sent messages should have same user._id
+          }}
 
-        renderActions={this.renderCustomActions}
-        renderBubble={this.renderBubble}
-        renderCustomView={this.renderCustomView}
-        renderFooter={this.renderFooter}
-      />
+          renderActions={this.renderCustomActions}
+          renderCustomView={this.renderCustomView}
+          renderFooter={this.renderFooter}
+        />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#eef2f5',
+  },
   footerContainer: {
     marginTop: 5,
     marginLeft: 10,
