@@ -117,7 +117,7 @@ export default class Record extends React.Component {
     try {
       const filePath = await AudioRecorder.stopRecording();
       if (Platform.OS === 'android') {
-        this._finishRecording(true, filePath);
+        this.finishRecording(true, filePath);
       }
       return filePath;
     } catch (error) {
