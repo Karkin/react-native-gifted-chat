@@ -5,12 +5,36 @@ import {
   TouchableOpacity,
   View,
   Platform,
+  PanResponder,
+  Dimensions,
   PermissionsAndroid,
 } from 'react-native';
-import Sound from 'react-native-sound';
+import RNFS from 'react-native-fs';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 import IconFontAwesome from 'react-native-vector-icons/FontAwesome';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
+
+const { width, height } = Dimensions.get('window');
+
+const getDirectionAndColor = ({ moveX, moveY, dx, dy}) => {
+  const draggedDown = dy > 30;
+  const draggedUp = dy < -30;
+  const draggedLeft = dx < -30;
+  const draggedRight = dx > 30;
+  const isBlue = moveY > (height - 50) && moveX > 0 && moveX < width;
+  let dragDirection = '';
+
+  // if (draggedLeft || draggedRight) {
+  //   if (draggedLeft) dragDirection += 'dragged left '
+  //   if (draggedRight) dragDirection +=  'dragged right ';
+  // }
+
+  if (isBlue && (draggedLeft || draggedUp)) {
+    return true;
+  }
+  return false;
+}
+
 
 export default class Record extends React.Component {
   constructor(props) {
@@ -20,8 +44,11 @@ export default class Record extends React.Component {
       recording: false,
       stoppedRecording: false,
       finished: false,
-      audioPath: AudioUtils.DocumentDirectoryPath + '/audioMsg.aac',
+      // audioPath: AudioUtils.MainBundlePath,
+      audioPath: AudioUtils.CachesDirectoryPath,
+      // audioPath: AudioUtils.DocumentDirectoryPath,
       hasPermission: undefined,
+      dragged: false
     };
 
     this.onRecordPressIn = this.onRecordPressIn.bind(this);
@@ -29,12 +56,26 @@ export default class Record extends React.Component {
   }
 
   prepareRecordingPath(audioPath){
-    AudioRecorder.prepareRecordingAtPath(audioPath, {
+    let audioName = '/audioMsg_'+new Date().getTime()+'.aac';
+    AudioRecorder.prepareRecordingAtPath(audioPath+audioName, {
       SampleRate: 22050,
       Channels: 1,
       AudioQuality: "Low",
       AudioEncoding: "aac",
-      AudioEncodingBitRate: 32000
+      AudioEncodingBitRate: 19200
+    });
+  }
+
+   componentWillMount() {
+    this._panResponder = PanResponder.create({
+      onMoveShouldSetPanResponder:(evt, gestureState) => !!getDirectionAndColor(gestureState),
+      onPanResponderMove: (evt, gestureState) => {
+        const drag = getDirectionAndColor(gestureState);
+        this.setState({
+          dragged: drag,
+        });
+      },
+      onPanResponderTerminationRequest: (evt, gestureState) => true,
     });
   }
 
@@ -79,7 +120,14 @@ export default class Record extends React.Component {
   finishRecording(didSucceed, filePath) {
     this.setState({ finished: didSucceed });
     console.log(`Finished recording of duration ${this.state.currentTime} seconds at path: ${filePath}`);
-    this.props.onSend({audio: filePath});
+
+    console.log(this.state.dragged);
+    if(!this.state.dragged){
+      RNFS.readFile(filePath, 'base64')
+          .then((contents) => {
+            this.props.onSend({audio: contents}, true);
+          });
+    }
   }
 
   async recordStart() {
@@ -97,6 +145,7 @@ export default class Record extends React.Component {
       this.prepareRecordingPath(this.state.audioPath);
     }
 
+    this.setState({dragged: false});
     this.setState({recording: true});
 
     try {
@@ -132,40 +181,46 @@ export default class Record extends React.Component {
 
   onRecordPressOut() {
     this.recordEnd();
-    this.props.onChangeOverlay(false);
+    this.props.onChangeOverlay(false);  
   }
 
   render() {
     return (
-      <TouchableOpacity
-        style={[styles.container, this.props.containerStyle]}
-        accessibilityTraits="button"
-        onPressIn={this.onRecordPressIn}
-        onPressOut={this.props.onPressOutRecordButton || this.onRecordPressOut}
-      >
-        <IconIonicons name="ios-mic-outline" size={22} color="#FFFFFF" />
-      </TouchableOpacity>
+      <View style={styles.container} {...this._panResponder.panHandlers}>
+        <TouchableOpacity
+          style={[styles.button, this.props.containerStyle]}
+          accessibilityTraits="button"
+          delayPressOut={1000}
+          onLongPress={this.onRecordPressIn}
+          onPressOut={this.props.onPressOutRecordButton || this.onRecordPressOut}
+        >
+          <IconIonicons style={styles.text} name="ios-mic-outline" />
+        </TouchableOpacity>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    position: "absolute",
+    bottom: 4,
+    right: 10,
+  },
+  button: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 33,
-    height: 33,
-    marginRight: 5,
-    marginBottom: 5,
-    borderRadius: 33,
+    width: 35,
+    height: 35,
+    borderRadius: 35,
     backgroundColor: '#00b5ca',
   },
   text: {
     color: "#FFFFFF",
-    fontWeight: '600',
-    fontSize: 17,
+    fontSize: 22,
     backgroundColor: 'transparent',
     lineHeight: 30,
+    textAlign: "center"
   }, 
 });
 

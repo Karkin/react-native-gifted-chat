@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     lineHeight: 16,
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginRight: 10,
+    backgroundColor: '#ffffff',
+    borderRadius: 5,
     marginTop: Platform.select({
       ios: 6,
       android: 0,
@@ -68,7 +73,7 @@ Composer.defaultProps = {
     android: 41,
   }), // TODO SHARE with GiftedChat.js and tests
   text: '',
-  placeholder: 'Type a message...',
+  placeholder: '輸入訊息',
   placeholderTextColor: '#b2b2b2',
   textInputProps: null,
   multiline: true,

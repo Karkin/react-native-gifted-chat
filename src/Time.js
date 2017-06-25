@@ -52,12 +52,14 @@ const styles = {
   }),
   center: StyleSheet.create({
     container: {
-      ...containerStyle,
+      // ...containerStyle,
+      height: 0,
+      marginBottom: 5
     },
     text: {
       color: '#fff',
       opacity: 0,
-      ...textStyle,
+      // ...textStyle,
     },
   }),
 };

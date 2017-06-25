@@ -122,7 +122,7 @@ export default class CustomActions extends React.Component {
       <View
         style={[styles.wrapper, this.props.wrapperStyle]}
       >
-        <IconIonicons name="ios-camera" size={28} color="#a7a8ac" />
+        <IconIonicons name="ios-camera" size={34} color="#a7a8ac" />
       </View>
     );
   }
@@ -157,10 +157,10 @@ export default class CustomActions extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: 26,
-    height: 26,
+    width: 30,
+    height: 30,
     marginLeft: 20,
-    marginBottom: 10,
+    marginBottom: 8,
   },
   wrapper: {
     flex: 1,

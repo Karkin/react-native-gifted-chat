@@ -5,6 +5,8 @@ import {
   Platform,
   StyleSheet,
   View,
+  Image,
+  Text,
 } from 'react-native';
 
 import ActionSheet from '@expo/react-native-action-sheet';
@@ -18,6 +20,7 @@ import Avatar from './Avatar';
 import Bubble from './Bubble';
 import MessageImage from './MessageImage';
 import MessageText from './MessageText';
+import MessageAudio from './MessageAudio';
 import Composer from './Composer';
 import Day from './Day';
 import InputToolbar from './InputToolbar';
@@ -450,7 +453,6 @@ class GiftedChat extends React.Component {
   }
 
   onChangeOverlay(e){
-    console.log(e);
     this.setState({overlayVisible: e});
   }
 
@@ -465,6 +467,8 @@ class GiftedChat extends React.Component {
               <View style={[this.props.overlayVisible, styles.overlay]}>
                 <View style={styles.overlayIconBG}>
                   <IconIonicons name="ios-mic" size={100} color="#FFFFFF" />
+                  <Image style={{width: 100, resizeMode: 'contain'}} source={require('./images/ajax-loader.gif')} />
+                  <Text style={styles.overlayText}>向左滑動取消錄音</Text>
                 </View>
               </View>
             }
@@ -500,10 +504,16 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent: 'center',
     marginTop: -100,
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 180,
     borderRadius: 15,
     backgroundColor: 'black',
+  },
+  overlayText: {
+    marginTop: 12,
+    fontSize: 16,
+    color: "#fff",
+    textAlign: 'center',
   }
 });
 
@@ -536,6 +546,7 @@ GiftedChat.defaultProps = {
   renderChatFooter: null,
   renderMessageText: null,
   renderMessageImage: null,
+  renderMessageAudio: null,
   renderComposer: null,
   renderCustomView: null,
   renderDay: null,
@@ -547,7 +558,7 @@ GiftedChat.defaultProps = {
   renderTime: null,
   user: {},
   bottomOffset: 0,
-  minInputToolbarHeight: 44,
+  minInputToolbarHeight: 55,
   isLoadingEarlier: false,
   messageIdGenerator: () => uuid.v4(),
   maxInputLength: null,
@@ -570,6 +581,7 @@ GiftedChat.propTypes = {
   renderChatFooter: React.PropTypes.func,
   renderMessageText: React.PropTypes.func,
   renderMessageImage: React.PropTypes.func,
+  renderMessageAudio: React.PropTypes.func,
   renderComposer: React.PropTypes.func,
   renderCustomView: React.PropTypes.func,
   renderDay: React.PropTypes.func,
@@ -595,6 +607,7 @@ export {
   Bubble,
   MessageImage,
   MessageText,
+  MessageAudio,
   Composer,
   Day,
   InputToolbar,

@@ -6,12 +6,46 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-
+import RNFS from 'react-native-fs';
 import Sound from 'react-native-sound';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 
 export default class MessageAudio extends React.Component {
-  //this.props.currentMessage.audio
+   constructor(props) {
+    super(props);
+    this.onActionsPress = this.onActionsPress.bind(this);
+  }
+
+  onActionsPress() {
+    // console.log(this.props.currentMessage.audio);
+    setTimeout(() => {
+      var path = RNFS.CachesDirectoryPath+'/audioMsg_'+new Date().getTime()+'.aac';
+      RNFS.writeFile(path, this.props.currentMessage.audio, 'base64')
+          .then((success) => {
+            var whoosh = new Sound(path, "", (error) => {
+              if (error) {
+                console.log('failed to load the sound', error);
+                return;
+              } 
+              // loaded successfully
+              console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+              setTimeout(() => {
+                // Play the sound with an onEnd callback
+                whoosh.play((success) => {
+                  if (success) {
+                    console.log('successfully finished playing');
+                  } else {
+                    console.log('playback failed due to audio decoding errors');
+                  }
+                });
+              }, 100);
+            });
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+    }, 100);
+  }
   
   render() {
     const { width, height } = Dimensions.get('window');
