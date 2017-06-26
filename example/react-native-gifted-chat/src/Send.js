@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
   container: {
     height: 44,
     justifyContent: 'flex-end',
+    zIndex: 99,
+    backgroundColor: '#FFFFFF'
   },
   text: {
     color: '#0084ff',
