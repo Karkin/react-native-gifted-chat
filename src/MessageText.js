@@ -104,6 +104,7 @@ const styles = {
     container: {
     },
     text: {
+      textAlign: 'left',
       color: '#2c2721',
       ...textStyle,
     },
