@@ -48,7 +48,7 @@
     "react-native-lightbox": "github:shoutem/react-native-lightbox",
     "react-native-nav": "^1.1.4",
     "react-native-sound": "^0.10.3",
-    "react-native-vector-icons": "^4.1.1"
+    "react-native-vector-icons": "^4.1.1",
     "shallowequal": "0.2.2",
     "uuid": "3.0.1"
   }
