@@ -212,7 +212,7 @@ const styles = {
       backgroundColor: '#d1cfce',
       minHeight: 20,
       alignSelf: 'stretch',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       // justifyContent: 'flex-end',
     },
     containerToNext: {

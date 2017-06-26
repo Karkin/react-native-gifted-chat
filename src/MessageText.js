@@ -102,9 +102,10 @@ const styles = {
   }),
   center: StyleSheet.create({
     container: {
+      backgroundColor: '#000',
     },
     text: {
-      textAlign: 'left',
+      backgroundColor: '#000',
       color: '#2c2721',
       ...textStyle,
     },
