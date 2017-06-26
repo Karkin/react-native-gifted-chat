@@ -1,26 +1,55 @@
 {
-  "name": "GiftedChat",
-  "version": "0.0.1",
-  "private": true,
+  "name": "react-native-gifted-chat",
+  "version": "0.1.0",
+  "description": "The most complete chat UI for React Native",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaridSafi/react-native-gifted-chat.git"
+  },
+  "keywords": [
+    "android",
+    "ios",
+    "react-native",
+    "react",
+    "react-component",
+    "messenger",
+    "message",
+    "chat"
+  ],
+  "author": "Farid Safi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FaridSafi/react-native-gifted-chat/issues"
+  },
+  "homepage": "https://github.com/FaridSafi/react-native-gifted-chat#readme",
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh",
-    "sync": "rm -rf ./node_modules/react-native-gifted-chat; sane '/usr/bin/rsync -v -a --exclude .git --exclude example --exclude __tests__ --exclude node_modules ../ ./node_modules/react-native-gifted-chat/' .. --glob='{**/*.json,**/*.js}'"
+    "lint": "eslint . --ext .js,.jsx"
+  },
+  "devDependencies": {
+    "eslint": "~3.12.2",
+    "eslint-config-airbnb": "~13.0.0",
+    "eslint-config-cooperka": "~0.2.3",
+    "eslint-plugin-import": "~2.2.0",
+    "eslint-plugin-jsx-a11y": "~2.2.3",
+    "eslint-plugin-react": "~6.8.0",
+    "eslint-plugin-react-native": "~2.2.1"
   },
   "dependencies": {
-    "react": "~15.4.0-rc.4",
-    "react-native": "^0.40.0",
+    "@expo/react-native-action-sheet": "0.3.1",
+    "md5": "2.2.1",
+    "moment": "2.17.1",
+    "react-native-communications": "2.2.1",
+    "react-native-invertible-scroll-view": "1.0.0",
+    "react-native-parsed-text": "0.0.16",
     "react-native-audio": "^3.2.2",
     "react-native-camera-roll-picker": "^1.1.7",
     "react-native-fs": "^2.3.3",
-    "react-native-gifted-chat": "file:../",
     "react-native-lightbox": "github:shoutem/react-native-lightbox",
     "react-native-nav": "^1.1.4",
     "react-native-sound": "^0.10.3",
     "react-native-vector-icons": "^4.1.1"
-
-  },
-  "devDependencies": {
-    "babel-preset-react-native": "^1.9.0",
-    "sane": "^1.4.0"
+    "shallowequal": "0.2.2",
+    "uuid": "3.0.1"
   }
 }
