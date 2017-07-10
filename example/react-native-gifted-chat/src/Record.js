@@ -29,7 +29,8 @@ const getDirectionAndColor = ({ moveX, moveY, dx, dy}) => {
   //   if (draggedRight) dragDirection +=  'dragged right ';
   // }
 
-  if (isBlue && (draggedLeft || draggedUp)) {
+  // if (isBlue && (draggedLeft || draggedUp)) {
+  if (draggedLeft || draggedUp) {
     return true;
   }
   return false;
