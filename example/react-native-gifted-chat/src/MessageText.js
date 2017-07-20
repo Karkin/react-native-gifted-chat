@@ -116,11 +116,11 @@ const styles = {
     container: {
     },
     text: {
-      color: '#2c2721',
+      color: 'white',
       ...textStyle,
     },
     link: {
-      color: '#2c2721',
+      color: 'white',
       textDecorationLine: 'underline',
     },
   }),
@@ -128,11 +128,11 @@ const styles = {
     container: {
     },
     text: {
-      color: '#2c2721',
+      color: 'white',
       ...textStyle,
     },
     link: {
-      color: '#2c2721',
+      color: 'white',
       textDecorationLine: 'underline',
     },
   }),
