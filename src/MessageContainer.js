@@ -115,7 +115,12 @@ export default class MessageContainer extends React.Component {
       position = "right";
     }else if(message.user._id === -1){
       position = "center";
+    }else if(message.user._id === -2){
+      position = "center2";
+    }else if(message.user._id === -3){
+      position = "center3";
     }
+
 
     const messageProps = {
       ...this.props,

@@ -92,6 +92,24 @@ const styles = {
       marginRight: 8,
     },
   }),
+  center2: StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      marginLeft: 8,
+      marginRight: 8,
+    },
+  }),
+  center3: StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      alignItems: 'flex-end',
+      justifyContent: 'center',
+      marginLeft: 8,
+      marginRight: 8,
+    },
+  }),
 };
 
 Message.defaultProps = {
@@ -110,7 +128,7 @@ Message.propTypes = {
   renderAvatar: React.PropTypes.func,
   renderBubble: React.PropTypes.func,
   renderDay: React.PropTypes.func,
-  position: React.PropTypes.oneOf(['left', 'right', 'center']),
+  position: React.PropTypes.oneOf(['left', 'right', 'center', 'center2', 'center3']),
   currentMessage: React.PropTypes.object,
   nextMessage: React.PropTypes.object,
   previousMessage: React.PropTypes.object,

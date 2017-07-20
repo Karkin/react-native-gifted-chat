@@ -222,6 +222,52 @@ const styles = {
       borderTopLeftRadius: 3,
     },
   }),
+  center2: StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+    },
+    wrapper: {
+      paddingTop: 5,
+      paddingLeft: 5,
+      paddingRight: 5,
+      borderRadius: 10,
+      backgroundColor: '#f2192a',
+      minHeight: 20,
+      alignSelf: 'stretch',
+      alignItems: 'flex-start',
+      // justifyContent: 'flex-end',
+    },
+    containerToNext: {
+      borderBottomLeftRadius: 3,
+    },
+    containerToPrevious: {
+      borderTopLeftRadius: 3,
+    },
+  }),
+  center3: StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+    },
+    wrapper: {
+      paddingTop: 5,
+      paddingLeft: 5,
+      paddingRight: 5,
+      borderRadius: 10,
+      backgroundColor: '#f2192a',
+      minHeight: 20,
+      alignSelf: 'stretch',
+      alignItems: 'flex-start',
+      // justifyContent: 'flex-end',
+    },
+    containerToNext: {
+      borderBottomLeftRadius: 3,
+    },
+    containerToPrevious: {
+      borderTopLeftRadius: 3,
+    },
+  }),
   bottom: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -276,7 +322,7 @@ Bubble.propTypes = {
   renderMessageText: React.PropTypes.func,
   renderCustomView: React.PropTypes.func,
   renderTime: React.PropTypes.func,
-  position: React.PropTypes.oneOf(['left', 'right', 'center']),
+  position: React.PropTypes.oneOf(['left', 'right', 'center', 'center2', 'center3']),
   currentMessage: React.PropTypes.object,
   nextMessage: React.PropTypes.object,
   previousMessage: React.PropTypes.object,
