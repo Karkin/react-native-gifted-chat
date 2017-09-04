@@ -30,6 +30,7 @@ export default class Composer extends React.Component {
 
         onChange={(e) => this.onChange(e)}
         onChangeText={text => this.onChangeText(text)}
+        onSubmitEditing={(e)=> this.props.onSend({text: this.props.text.trim()}, true)}
 
         style={[styles.textInput, this.props.textInputStyle, {height: this.props.composerHeight}]}
 
@@ -76,7 +77,7 @@ Composer.defaultProps = {
   placeholder: '輸入訊息',
   placeholderTextColor: '#b2b2b2',
   textInputProps: null,
-  multiline: true,
+  multiline: false,
   textInputStyle: {},
   onTextChanged: () => {
   },

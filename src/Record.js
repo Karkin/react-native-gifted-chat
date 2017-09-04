@@ -57,7 +57,7 @@ export default class Record extends React.Component {
   }
 
   prepareRecordingPath(audioPath){
-    let audioName = '/audioMsg_'+new Date().getTime()+'.aac';
+    let audioName = '/audioMsg_'+new Date().getTime()+'.m4a';
     AudioRecorder.prepareRecordingAtPath(audioPath+audioName, {
       SampleRate: 22050,
       Channels: 1,
@@ -126,6 +126,8 @@ export default class Record extends React.Component {
     if(!this.state.dragged){
       RNFS.readFile(filePath, 'base64')
           .then((contents) => {
+
+            console.log(contents);
             this.props.onSend({audio: contents}, true);
           });
     }
@@ -220,8 +222,15 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 22,
     backgroundColor: 'transparent',
-    lineHeight: 30,
-    textAlign: "center"
+    textAlign: "center",
+    ...Platform.select({
+      ios: {
+        lineHeight: 30,
+      },
+      android: {
+        lineHeight: 22,
+      },
+    }),
   }, 
 });
 
