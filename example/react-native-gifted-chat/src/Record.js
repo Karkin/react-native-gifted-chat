@@ -57,7 +57,7 @@ export default class Record extends React.Component {
   }
 
   prepareRecordingPath(audioPath){
-    let audioName = '/audioMsg_'+new Date().getTime()+'.m4a';
+    let audioName = '/audioMsg_'+new Date().getTime()+'.aac';
     AudioRecorder.prepareRecordingAtPath(audioPath+audioName, {
       SampleRate: 22050,
       Channels: 1,
