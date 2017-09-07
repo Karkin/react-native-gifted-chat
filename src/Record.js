@@ -63,7 +63,8 @@ export default class Record extends React.Component {
       Channels: 1,
       AudioQuality: "Low",
       AudioEncoding: "aac",
-      AudioEncodingBitRate: 19200
+      AudioEncodingBitRate: 19200,
+      OutputFormat: "aac_adts"
     });
   }
 
