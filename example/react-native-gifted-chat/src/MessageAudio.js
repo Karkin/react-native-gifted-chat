@@ -10,6 +10,8 @@ import RNFS from 'react-native-fs';
 import Sound from 'react-native-sound';
 import IconIonicons from 'react-native-vector-icons/Ionicons';
 
+var whoosh;
+
 export default class MessageAudio extends React.Component {
    constructor(props) {
     super(props);
@@ -22,7 +24,10 @@ export default class MessageAudio extends React.Component {
       var path = RNFS.CachesDirectoryPath+'/audioMsg_'+new Date().getTime()+'.aac';
       RNFS.writeFile(path, this.props.currentMessage.audio, 'base64')
           .then((success) => {
-            var whoosh = new Sound(path, "", (error) => {
+              if(whoosh){
+                whoosh.stop();
+              }
+              whoosh = new Sound(path, "", (error) => {
               if (error) {
                 console.log('failed to load the sound', error);
                 return;
@@ -56,7 +61,7 @@ export default class MessageAudio extends React.Component {
           style={[styles.audio, this.props.audioStyle]}
           onPress={this.onActionsPress}
         >
-          <IconIonicons name="ios-play" size={30} color="#000000" />
+          <IconIonicons name="ios-play" size={30} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
     );
