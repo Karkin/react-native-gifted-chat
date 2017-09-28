@@ -61,7 +61,7 @@ export default class MessageAudio extends React.Component {
           style={[styles.audio, this.props.audioStyle]}
           onPress={this.onActionsPress}
         >
-          <IconIonicons name="ios-play" size={30} color="#FFFFFF" />
+          <IconIonicons name="ios-play" size={30} color="#000000" />
         </TouchableOpacity>
       </View>
     );

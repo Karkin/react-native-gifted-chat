@@ -414,7 +414,7 @@ class GiftedChat extends React.Component {
       text: this.state.text,
       composerHeight: Math.max(MIN_COMPOSER_HEIGHT, this.state.composerHeight),
       onSend: this.onSend,
-      onInputSizeChanged: this.onInputSizeChanged,
+      // onInputSizeChanged: this.onInputSizeChanged,
       onTextChanged: this.onInputTextChanged,
       textInputProps: {
         ...this.props.textInputProps,
