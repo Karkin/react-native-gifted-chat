@@ -46,7 +46,7 @@
     "react-native-camera-roll-picker": "^1.1.7",
     "react-native-fs": "^2.3.3",
     "react-native-lightbox": "github:shoutem/react-native-lightbox",
-    "react-native-nav": "^1.1.4",
+    "react-native-nav": "cribspot/react-native-nav#76baa81ded23829ad9b5eb4e4a51052b20fb4e08",
     "react-native-sound": "^0.10.3",
     "react-native-vector-icons": "^4.1.1",
     "shallowequal": "0.2.2",
